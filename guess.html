@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guess Number 🎯</title>
+    <link rel="stylesheet" href="guess.css">
+</head>
+<body>
+
+<h1>🎯 Guess the Number 🎯</h1>
+
+<!-- Music control -->
+<button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+<audio id="bg-music" loop>
+    <source src="guess-music.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+</audio>
+
+<!-- Main Menu -->
+<div id="main-menu">
+    <h2>Main Menu</h2>
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<!-- Game Container -->
+<div id="game-container" style="display:none;">
+    <p>Enter a number between 1 and 100:</p>
+    <input type="number" id="guess-input" placeholder="Your guess">
+    <button onclick="checkGuess()">Guess</button>
+    <p id="result"></p>
+
+    <button onclick="resetGame()">Restart 🔁</button>
+    <button onclick="backToMenu()">Main Menu 🏠</button>
+    <button onclick="unlockPremium()">Unlock Premium 🎯</button>
+</div>
+
+<script src="guess.js"></script>
+</body>
+</html>
