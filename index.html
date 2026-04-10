@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Portfolio</title>
-    <link rel="stylesheet" href="portfolio.css">
+    <title>Tic Tac Toe Game</title>
+    <link rel="stylesheet" href="tictactoe.css">
 </head>
+
 <body>
 
-<header>
-    <h1>💼 My GitHub Portfolio</h1>
-    <p>Hello! I’m chiemerieokoh, a developer. Check out my projects below:</p>
-</header>
-
-<main>
-    <div class="projects">
-        <div class="project-card">
-            <a href="../calculator/calculator.html">
-                <img src="image/calc.png" alt="Calculator" />
-                <h2>🧮 Advanced Calculator</h2>
-            </a>
-        </div>
-
-        <div class="project-card">
-            <a href="../mini_games/guess/guess.html">
-                <img src="image/guess.png" alt="Guess Number" />
-                <h2>🎯 Guess Number</h2>
-            </a>
-        </div>
-
-        <div class="project-card">
-            <a href="../mini_games/tictactoe/tictactoe.html">
-                <img src="image/tictactoe.png" alt="Tic-Tac-Toe" />
-                <h2>❌⭕ Tic-Tac-Toe</h2>
-            </a>
-        </div>
-
-        <div class="project-card coming-soon">
-            <img src="image/snake.png" alt="Snake Game" />
-            <h2>🐍 Snake Game (Coming Soon)</h2>
-        </div>
+    <!-- 🎮 MAIN MENU -->
+    <div id="menu" class="screen active">
+        <h1>❌⭕ Tic Tac Toe</h1>
+        <button onclick="startGame()">▶️ Play</button>
     </div>
-</main>
 
-<script src="portfolio.js"></script>
+    <!-- 🎮 GAME SCREEN -->
+    <div id="game" class="screen">
+
+        <h1>❌⭕ Tic Tac Toe</h1>
+
+        <p>🏆 Player: <span id="currentPlayer">X</span></p>
+        <p>❌ X Wins: <span id="xScore">0</span> | ⭕ O Wins: <span id="oScore">0</span></p>
+
+        <!-- Game Board -->
+        <div id="board">
+            <button class="cell" onclick="makeMove(this,0)"></button>
+            <button class="cell" onclick="makeMove(this,1)"></button>
+            <button class="cell" onclick="makeMove(this,2)"></button>
+
+            <button class="cell" onclick="makeMove(this,3)"></button>
+            <button class="cell" onclick="makeMove(this,4)"></button>
+            <button class="cell" onclick="makeMove(this,5)"></button>
+
+            <button class="cell" onclick="makeMove(this,6)"></button>
+            <button class="cell" onclick="makeMove(this,7)"></button>
+            <button class="cell" onclick="makeMove(this,8)"></button>
+        </div>
+
+        <p id="result"></p>
+
+        <button onclick="restartGame()">🔁 Restart</button>
+        <button onclick="goToMenu()">🏠 Main Menu</button>
+
+    </div>
+
+    <!-- 🔊 Sounds -->
+    <audio id="winSound" src="assets/audio/correct.mp3"></audio>
+    <audio id="clickSound" src="assets/audio/click.mp3"></audio>
+
+    <script src="tictactoe.js"></script>
+
 </body>
 </html>

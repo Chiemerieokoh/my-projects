@@ -1,57 +1,82 @@
 let secretNumber;
-let attempts;
-let gameActive = false;
-let isPremiumUnlocked = false;
+let lives;
+let score;
 
-// --- Main Menu ---
 function startGame() {
-    secretNumber = Math.floor(Math.random() * 100) + 1;
-    attempts = 0;
-    gameActive = true;
-    document.getElementById("main-menu").style.display = "none";
-    document.getElementById("game-container").style.display = "block";
-    document.getElementById("result").textContent = "";
-    document.getElementById("guess-input").value = "";
+    document.getElementById("menu").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+
+    restartGame();
 }
 
-// --- Music ---
-function toggleMusic() {
-    const music = document.getElementById("bg-music");
-    if (music.paused) music.play();
-    else music.pause();
+function restartGame() {
+    secretNumber = Math.floor(Math.random() * 10) + 1;
+    lives = 3;
+    score = 0;
+
+    document.getElementById("lives").innerHTML = lives;
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("guessInput").value = "";
 }
 
-// --- Gameplay ---
+function goToMenu() {
+    document.getElementById("game").classList.remove("active");
+    document.getElementById("menu").classList.add("active");
+}
+
 function checkGuess() {
-    if (!gameActive) return;
+    let guess = parseInt(document.getElementById("guessInput").value);
+    let result = document.getElementById("result");
 
-    let guess = Number(document.getElementById("guess-input").value);
-    if (!guess) return;
+    if (!guess) {
+        result.innerHTML = "⚠️ Enter a number!";
+        return;
+    }
 
-    attempts++;
     if (guess === secretNumber) {
-        document.getElementById("result").textContent = "🎉 Correct! Number was " + secretNumber;
-        gameActive = false;
-    } else if (guess < secretNumber) {
-        document.getElementById("result").textContent = "⬆ Too low!";
+        score += 10;
+        result.innerHTML = "🎉 Correct! You win!";
+        document.getElementById("correctSound").play();
     } else {
-        document.getElementById("result").textContent = "⬇ Too high!";
+        lives--;
+
+        if (guess > secretNumber) {
+            result.innerHTML = "📉 Too high! Try again.";
+        } else {
+            result.innerHTML = "📈 Too low! Try again.";
+        }
+
+        document.getElementById("wrongSound").play();
+    }
+
+    document.getElementById("lives").innerHTML = lives;
+    document.getElementById("score").innerHTML = score;
+
+    // Game Over
+    if (lives === 0) {
+        result.innerHTML = "💀 Game Over! Number was " + secretNumber;
     }
 }
 
-// --- Reset / Menu ---
-function resetGame() {
-    startGame();
-}
+function suggestNumber() {
+    let result = document.getElementById("result");
 
-function backToMenu() {
-    document.getElementById("game-container").style.display = "none";
-    document.getElementById("main-menu").style.display = "block";
-}
+    if (lives === 0) {
+        result.innerHTML = "Game over! Restart.";
+        return;
+    }
 
-// --- Premium ---
-function unlockPremium() {
-    isPremiumUnlocked = true;
-    alert("Premium Features Unlocked! 🎯");
-    // Example: extra hints, or auto reveal hints
+    let hint;
+
+    if (secretNumber <= 5) {
+        hint = Math.floor(Math.random() * 5) + 1;
+    } else {
+        hint = Math.floor(Math.random() * 5) + 6;
+    }
+
+    score -= 2; // penalty for hint
+
+    document.getElementById("score").innerHTML = score;
+    result.innerHTML = "💡 Try around: " + hint;
 }

@@ -1,52 +1,105 @@
-# 💻 My Projects Portfolio
+# 🚀 My Mini Web Projects Hub
 
-Welcome! This repository contains all my web projects, mini-games, and portfolio.  
-Click the links below to explore each project:
-
----
-
-## 🧮 Advanced Calculator
-A full-featured calculator with premium features.  
-[🟩 Open Calculator](calculator/calculator.html)
+This project is a collection of simple web applications built using HTML, CSS, and JavaScript.  
+It includes mini games and a calculator app, all organized in folders for easy access.
 
 ---
 
-## 🎯 Guess Number Game
-Fun guessing game with premium features.  
-[🟩 Play Guess Number](mini_games/guess/guess.html)
+## 🎮 Projects Included
+
+### 1. Tic Tac Toe (⭕❌)
+A classic 2-player game where players take turns marking X and O on a 3x3 grid.  
+The first player to align 3 symbols in a row (horizontal, vertical, or diagonal) wins.
+
+Path:
+mini_games/tictactoe/index.html
 
 ---
 
-## ❌⭕ Tic-Tac-Toe
-Play against AI or friends. Premium features included.  
-[🟩 Play Tic-Tac-Toe](mini_games/tictactoe/tictactoe.html)
+### 2. Guess Number Game 🎯
+A simple game where the player tries to guess a randomly generated number.  
+The game gives feedback like "too high" or "too low" until the correct number is found.
+
+Path:
+mini_games/guess-game/index.html
 
 ---
 
-## 🐍 Snake Game
-Classic snake game with premium offers. (Coming Soon)  
-[🟩 Play Snake Game](mini_games/snake/snake.html)
+### 3. Calculator 🧮
+A basic calculator that performs arithmetic operations like addition, subtraction, multiplication, and division.
+
+Path:
+calculator/calculator.html
 
 ---
 
-## 💼 My Portfolio
-Showcases all my projects, hover effects, and screenshots.  
-[🟩 View Portfolio](portfolio/index.html)
+## 📁 Project Structure
+
+MyProject/
+│
+├── index.html          (Main homepage / hub)
+├── style.css
+├── script.js
+├── README.md
+│
+├── mini_games/
+│     ├── tictactoe/
+│     │      └── index.html
+│     │
+│     └── guess-game/
+│            └── index.html
+│
+└── calculator/
+       └── calculator.html
 
 ---
 
-## 🚀 Future Projects
-Projects under development. Will be added soon!  
-- `future_projects/project1/`
-- `future_projects/project2/`
+## ▶️ How to Run
+
+1. Open the project folder
+2. Open index.html in any web browser
+3. Click on any game or app to start using it
 
 ---
 
-## ⚡ How to Run
-1. Clone or download this repo.  
-2. Open `index.html` in your browser to access the main launcher.  
-3. Click on any project button or link to explore it.  
+## 💡 Features
+
+- Simple and clean interface
+- Beginner-friendly code structure
+- Mobile-friendly layout
+- Fast and lightweight
+- Easy navigation between apps
 
 ---
 
-Made with ❤️ by [Chiemerie okoh]
+## 🛠️ Built With
+
+- HTML
+- CSS
+- JavaScript
+
+---
+
+## 👨‍💻 Author
+
+Created by: You 😄
+
+GitHub: https://github.com/chiemerieokoh  
+WhatsApp: +2348102343018
+
+---
+
+## 📌 Notes
+
+- Make sure folder names are correct (mini_games, guess-game, tictactoe)
+- File paths must match exactly for navigation to work
+- This project is for learning and practice purposes
+
+---
+
+## 🚀 Future Improvements
+
+- Add animations and sound effects
+- Improve UI design
+- Add more mini games
+- Convert into a mobile app (PWA or APK)

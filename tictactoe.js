@@ -1,89 +1,101 @@
+let currentPlayer = "X";
 let board = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "❌";
 let gameActive = true;
-let isPremiumUnlocked = false; // AI locked by default
-let gameMode = ""; // "2P" or "AI"
 
-// --- Main Menu ---
-function startGame(mode) {
-    gameMode = mode;
-    document.getElementById("main-menu").style.display = "none";
-    document.getElementById("game-container").style.display = "block";
+let xScore = 0;
+let oScore = 0;
 
-    if (mode === "AI" && !isPremiumUnlocked) {
-        alert("AI Mode is Premium! Unlock to play against AI.");
-        startGame("2P");
-    }
+const winPatterns = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+
+// 🎮 Start Game
+function startGame() {
+    document.getElementById("menu").classList.remove("active");
+    document.getElementById("game").classList.add("active");
 }
 
-function backToMenu() {
-    document.getElementById("game-container").style.display = "none";
-    document.getElementById("main-menu").style.display = "block";
-    resetGame();
+// 🏠 Go to Menu
+function goToMenu() {
+    document.getElementById("game").classList.remove("active");
+    document.getElementById("menu").classList.add("active");
 }
 
-// --- Background Music ---
-function toggleMusic() {
-    const music = document.getElementById("bg-music");
-    if (music.paused) music.play();
-    else music.pause();
-}
+// ❌⭕ Make Move
+function makeMove(cell, index) {
 
-// --- Gameplay ---
-function makeMove(index) {
     if (board[index] !== "" || !gameActive) return;
 
     board[index] = currentPlayer;
-    document.getElementsByClassName("cell")[index].textContent = currentPlayer;
+    cell.innerHTML = currentPlayer;
 
-    if (checkWinner()) {
-        document.getElementById("status").textContent = currentPlayer + " wins! 🎉";
-        gameActive = false;
-        return;
-    }
+    document.getElementById("clickSound").play();
 
-    if (!board.includes("")) {
-        document.getElementById("status").textContent = "Draw! 🤝";
-        gameActive = false;
-        return;
-    }
+    checkWinner();
 
-    currentPlayer = currentPlayer === "❌" ? "⭕" : "❌";
-    document.getElementById("status").textContent = "Current Player: " + currentPlayer;
-
-    if (gameMode === "AI" && isPremiumUnlocked && currentPlayer === "⭕") {
-        setTimeout(aiMove, 300);
+    if (gameActive) {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        document.getElementById("currentPlayer").innerHTML = currentPlayer;
     }
 }
 
+// 🏆 Check Winner
 function checkWinner() {
-    const winCombos = [
-        [0,1,2],[3,4,5],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6]
-    ];
-    return winCombos.some(combo => combo.every(i => board[i] === currentPlayer));
+
+    for (let pattern of winPatterns) {
+        let [a, b, c] = pattern;
+
+        if (
+            board[a] !== "" &&
+            board[a] === board[b] &&
+            board[a] === board[c]
+        ) {
+            gameActive = false;
+
+            document.getElementById("result").innerHTML =
+                "🎉 Player " + board[a] + " Wins!";
+
+            document.getElementById("winSound").play();
+
+            if (board[a] === "X") {
+                xScore++;
+                document.getElementById("xScore").innerHTML = xScore;
+            } else {
+                oScore++;
+                document.getElementById("oScore").innerHTML = oScore;
+            }
+
+            return;
+        }
+    }
+
+    // 🤝 Draw Check
+    if (!board.includes("")) {
+        gameActive = false;
+        document.getElementById("result").innerHTML = "🤝 It's a Draw!";
+    }
 }
 
-function resetGame() {
+// 🔁 Restart Game
+function restartGame() {
+
     board = ["", "", "", "", "", "", "", "", ""];
-    currentPlayer = "❌";
     gameActive = true;
+    currentPlayer = "X";
+
+    document.getElementById("currentPlayer").innerHTML = currentPlayer;
+    document.getElementById("result").innerHTML = "";
+
     let cells = document.getElementsByClassName("cell");
-    for (let i = 0; i < cells.length; i++) cells[i].textContent = "";
-    document.getElementById("status").textContent = "Current Player: ❌";
-}
 
-// --- Premium AI Unlock ---
-function unlockPremium() {
-    isPremiumUnlocked = true;
-    alert("AI Opponent unlocked! 🤖");
-}
-
-// --- Simple AI ---
-function aiMove() {
-    if (!gameActive) return;
-    let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
-    let choice = empty[Math.floor(Math.random()*empty.length)];
-    makeMove(choice);
+    for (let cell of cells) {
+        cell.innerHTML = "";
+    }
 }

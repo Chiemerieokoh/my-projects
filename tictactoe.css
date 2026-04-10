@@ -1,75 +1,95 @@
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    margin-top: 20px;
-    font-size: 32px;
-    color: #333;
-}
-
-#main-menu {
-    margin-top: 30px;
-}
-
-#main-menu h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-button {
-    margin: 10px;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    background-color: #4caf50;
+    font-family: Arial;
+    background: linear-gradient(to right, #141e30, #243b55);
     color: white;
-    transition: 0.3s;
 }
 
+/* Screens */
+.screen {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* Title */
+h1 {
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+/* Paragraphs */
+p {
+    font-size: 18px;
+}
+
+/* 🎮 MAIN BUTTONS (Play, Restart, Menu) */
+button {
+    padding: 15px 25px;      /* 🔥 enlarged buttons */
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* 🔥 Hover effect for buttons */
 button:hover {
-    background-color: #45a049;
+    background: #00ffcc;
+    color: black;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px #00ffcc,
+                0 0 30px #00ffcc;
 }
 
+/* 🔥 Click effect */
+button:active {
+    transform: scale(0.95);
+}
+
+/* 🎯 Game Board */
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 90px);
-    gap: 5px;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
     justify-content: center;
-    margin: 20px auto;
+    margin-top: 20px;
 }
 
+/* ❌⭕ Cells */
 .cell {
-    width: 90px;
-    height: 90px;
-    background-color: white;
-    border: 2px solid #333;
+    width: 100px;
+    height: 100px;
     font-size: 40px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 10px;
+    background: #111;
+    color: white;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s ease;
 }
 
+/* Cell Hover Effect */
 .cell:hover {
-    background-color: #ddd;
+    background: #00ffcc;
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #00ffcc;
 }
 
-#status {
+/* Result Text */
+#result {
+    font-size: 22px;
     margin-top: 15px;
-    font-size: 18px;
     font-weight: bold;
-    color: #222;
 }
 
-#game-container {
-    margin-top: 20px;
+/* Score Text */
+span {
+    font-weight: bold;
 }
